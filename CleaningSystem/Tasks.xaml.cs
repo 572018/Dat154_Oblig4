@@ -23,5 +23,10 @@ namespace CleaningSystem
         {
             InitializeComponent();
         }
+
+        private void SignOut(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+        }
     }
 }
