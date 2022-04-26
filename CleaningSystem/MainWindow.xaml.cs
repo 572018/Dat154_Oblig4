@@ -28,17 +28,17 @@ namespace CleaningSystem
 
         private void Cleaning (object sender, RoutedEventArgs e)
         {
-            Tasks page1 = new Tasks();
-            this.Content = page1;
-
+            new Tasks().Show();
         }
 
         private void Service (object sender, RoutedEventArgs e)
         {
+            new Tasks().Show();
         }
 
         private void Maintenance (object sender, RoutedEventArgs e)
         {
+            new Tasks().Show();
         }
 
     }
