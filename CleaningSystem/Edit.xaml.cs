@@ -55,12 +55,21 @@ namespace CleaningSystem
                 service.Note = Note.Text;
             }
 
-            if (Status.Text != null)
+            if (Status.SelectedItem != null)
             {
-                service.Status = Status.Text;
+                service.Status = (string?)Status.SelectedItem;
             }
 
-            dx.Services.Update(service);
+            if ((string?)Status.SelectedItem == "Done")
+            {
+                dx.Services.Remove(service);
+                dx.SaveChanges();
+            }
+            else
+            {
+                dx.Services.Update(service);
+                dx.SaveChanges();
+            }
 
             Close();
         }
