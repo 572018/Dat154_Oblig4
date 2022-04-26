@@ -1,4 +1,6 @@
-﻿namespace BookingSystem.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace BookingSystem.Models
 {
     public class BookingModel
     {
@@ -10,6 +12,13 @@
 
         public string EmailAdress { get; set; } 
 
-
+        public BookingModel(DateOnly checkInDate, DateOnly checkOutDate, int roomNumber, string emailAddress)
+        {
+            CheckInDate = checkInDate;
+            CheckOutDate = checkOutDate;
+            RoomNumber = roomNumber;
+            EmailAdress = emailAddress;
+        }
     }
+
 }
