@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CleaningSystem.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,20 @@ namespace CleaningSystem
     /// </summary>
     public partial class Tasks : Window
     {
+        private DbSet<ServiceModel> serivce;
         public Tasks()
         {
             InitializeComponent();
+        }
+
+        private void SignOut(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
