@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Dat154_Oblig4_Library;
+using BookingSystem.Models;
 
 namespace BookingSystem.Repository
 {

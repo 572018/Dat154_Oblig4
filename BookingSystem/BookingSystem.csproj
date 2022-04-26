@@ -15,8 +15,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Dat154_Oblig4_Library\Dat154_Oblig4_Library.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Dat154_Oblig4_Library;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using BookingSystem.Models;
 
 namespace BookingSystem
 {
