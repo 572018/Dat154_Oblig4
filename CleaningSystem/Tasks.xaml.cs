@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,9 @@ namespace CleaningSystem
     /// </summary>
     public partial class Tasks : Window
     {
+        private dat154_2022_6Context _context;
+        private DbSet<Service> Service;
+
         public Tasks()
         {
             InitializeComponent();

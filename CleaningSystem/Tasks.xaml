@@ -14,7 +14,7 @@
         <Label Content="Tasks" FontSize="25" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="40" Width="68"/>
         <Button Content="Sign Out" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="SignOut" Height="40" Width="90"/>
         <ListView ItemsSource="{Binding}" SelectionChanged="ListView_SelectionChanged" Grid.RowSpan="2" Margin="0,63,0,-63">
-            <ListView.View Name="ServiceModel" ItemsSource="{Binding}" Margin="0,68,0,0">
+            <ListView.View Name="Service" ItemsSource="{Binding}" Margin="0,68,0,0">
                 <GridView>
                     <GridViewColumn Header="Room nr." DisplayMemberBinding="{Binding Path=SerivceModel.Room}" Width="100"/>
                     <GridViewColumn Header="Checked in" DisplayMemberBinding="{Binding Path=SerivceModel.CheckedIn}" Width="100"/>
