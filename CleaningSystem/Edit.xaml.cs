@@ -33,8 +33,19 @@ namespace CleaningSystem
             InitializeComponent();
 
             service = Service;
-        }
 
+            if (service.Note != null)
+            {
+                Note.Text = service.Note;
+            }
+
+            if (service.Status != null)
+            {
+                Status.Text = service.Status;
+            }
+        }
+        //<TextBox Name="Status" HorizontalAlignment="Left" Margin="181,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154" Height="26" RenderTransformOrigin="0.472,0.471" Grid.ColumnSpan="2" Grid.Column="1"/>
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
