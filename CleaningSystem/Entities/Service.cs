@@ -11,6 +11,8 @@ namespace CleaningSystem
         public string? Service1 { get; set; }
         public string? Maintenance { get; set; }
 
+        public string? Description { get; set; }
+
         public virtual Room RoomnrNavigation { get; set; } = null!;
     }
 }
