@@ -20,9 +20,26 @@ namespace CleaningSystem
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        private void Cleaning (object sender, RoutedEventArgs e)
+        {
+            Tasks page1 = new Tasks();
+            this.Content = page1;
+
+        }
+
+        private void Service (object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void Maintenance (object sender, RoutedEventArgs e)
+        {
+        }
+
     }
 }
