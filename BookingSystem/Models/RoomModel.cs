@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions;
+﻿using BookingSystem.ExtensionMethods;
 
 namespace BookingSystem.Models
 {
@@ -19,7 +18,7 @@ namespace BookingSystem.Models
             RoomSize = roomSize;
             NiceView = niceView;
 
-            RoomPrice = Extensions.CalculateRoomPrize(this);     
+            RoomPrice = Extensions.CalculateRoomPrize(this);
            }
     }
     public enum RoomSize

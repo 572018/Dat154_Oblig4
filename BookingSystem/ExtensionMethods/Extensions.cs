@@ -1,5 +1,7 @@
 ﻿
-namespace BookingSystem.Models
+using BookingSystem.Models;
+
+namespace BookingSystem.ExtensionMethods
 {
     public static class Extensions
     {
