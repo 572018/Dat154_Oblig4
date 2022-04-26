@@ -10,7 +10,7 @@ namespace BookingSystem.Repository
             DbSet<Booking> GetAll();
             Booking Get(int id);
              
-            DbSet<Booking> GetByRoomnumber(int nr);
+            List<Booking> GetByRoomnumber(int nr);
         }
 
         public class BookingRepository : IBookingsRepository
@@ -27,9 +27,9 @@ namespace BookingSystem.Repository
                 return dx.Bookings;
             }
 
-            public DbSet<Booking> GetByRoomnumber(int nr)
+            public List<Booking> GetByRoomnumber(int nr)
             {
-                dx.Bookings.Where(x => x.Roomnr == nr).ToArray();
+                return dx.Bookings.Where(x => x.Roomnr == nr).ToList();
             }
         }
     }

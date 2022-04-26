@@ -48,9 +48,16 @@ namespace BookingSystem
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(50)
+                    .IsUnicode(false)
                     .HasColumnName("email");
 
                 entity.Property(e => e.Roomnr).HasColumnName("roomnr");
+
+                entity.HasOne(d => d.EmailNavigation)
+                    .WithMany(p => p.Bookings)
+                    .HasForeignKey(d => d.Email)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__booking__email__2D27B809");
 
                 entity.HasOne(d => d.RoomnrNavigation)
                     .WithMany(p => p.Bookings)

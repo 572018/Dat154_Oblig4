@@ -1,4 +1,5 @@
 ﻿
+using System.Net.Mail;
 using BookingSystem.Models;
 
 namespace BookingSystem.ExtensionMethods
@@ -15,6 +16,18 @@ namespace BookingSystem.ExtensionMethods
                 _ => 0,
             };
         }
+        public static Boolean LogIn( this Customer customer)
+        {  
+            try
+            {
+                System.Net.Mail.MailAddress m = new MailAddress(customer.Email);
 
+                 return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
     }
 }
