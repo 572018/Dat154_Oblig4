@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BookingSystem
+namespace Dat154_Oblig4_Library
 {
     public partial class Booking
     {

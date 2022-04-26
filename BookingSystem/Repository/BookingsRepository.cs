@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Dat154_Oblig4_Library;
 
 namespace BookingSystem.Repository
 {
@@ -29,7 +30,11 @@ namespace BookingSystem.Repository
 
             public List<Booking> GetByRoomnumber(int nr)
             {
+
                 return dx.Bookings.Where(x => x.Roomnr == nr).ToList();
+
+               
+
             }
         }
     }

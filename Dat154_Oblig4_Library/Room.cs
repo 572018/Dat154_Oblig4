@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using BookingSystem.ExtensionMethods;
 
-namespace BookingSystem
+namespace Dat154_Oblig4_Library
 {
     public partial class Room
     {

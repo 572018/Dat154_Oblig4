@@ -1,6 +1,9 @@
 ﻿
+
 using System.Net.Mail;
 using BookingSystem.Models;
+
+using BookingSystem/ExtensionMethods/Extensions.cs;
 
 namespace BookingSystem.ExtensionMethods
 {
