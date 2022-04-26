@@ -7,11 +7,11 @@ namespace BookingSystem.ExtensionMethods
     {
         public static int CalculateRoomPrize(this Room room)
         {
-            return room.RoomSize switch
+            return room.Size switch
             {
-                RoomSize.small => 300 + Math.Min(0, (room.NumberOfBeds - 1)) * 200,
-                RoomSize.medium => 600 + Math.Min(0, (room.NumberOfBeds - 2)) * 200,
-                RoomSize.large => 1200 + Math.Min(0, (room.NumberOfBeds - 2)) * 200,
+                RoomSize.small => 300 + Math.Min(0, (room.Beds - 1)) * 200,
+                RoomSize.medium => 600 + Math.Min(0, (room.Beds - 2)) * 200,
+                RoomSize.large => 1200 + Math.Min(0, (room.Beds - 2)) * 200,
                 _ => 0,
             };
         }
