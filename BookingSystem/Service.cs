@@ -10,6 +10,8 @@ namespace BookingSystem
         public string? Cleaning { get; set; }
         public string? Service1 { get; set; }
         public string? Maintenance { get; set; }
+        public string? Status { get; set; }
+        public string? Note { get; set; }
 
         public virtual Room RoomnrNavigation { get; set; } = null!;
     }

@@ -12,5 +12,13 @@ namespace BookingSystem
         public DateTime Checkoutdate { get; set; }
 
         public virtual Room RoomnrNavigation { get; set; } = null!;
+
+        public Booking(DateTime checkInDate, DateTime checkOutDate, int roomNumber, string emailAddress)
+        {
+            Checkindate = checkInDate;
+            Checkoutdate = checkOutDate;
+            Roomnr = roomNumber;
+            Email = emailAddress;
+        }
     }
 }

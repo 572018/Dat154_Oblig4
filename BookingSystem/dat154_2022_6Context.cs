@@ -93,6 +93,8 @@ namespace BookingSystem
 
                 entity.Property(e => e.Beds).HasColumnName("beds");
 
+                entity.Property(e => e.Price).HasColumnName("price");
+
                 entity.Property(e => e.Size).HasColumnName("size");
             });
 
@@ -118,10 +120,20 @@ namespace BookingSystem
                     .IsUnicode(false)
                     .HasColumnName("maintenance");
 
+                entity.Property(e => e.Note)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("note");
+
                 entity.Property(e => e.Service1)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("service");
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("status");
 
                 entity.HasOne(d => d.RoomnrNavigation)
                     .WithOne(p => p.Service)

@@ -5,7 +5,7 @@ namespace BookingSystem.ExtensionMethods
 {
     public static class Extensions
     {
-        public static int CalculateRoomPrize(this RoomModel room)
+        public static int CalculateRoomPrize(this Room room)
         {
             return room.RoomSize switch
             {
