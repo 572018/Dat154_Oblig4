@@ -9,6 +9,8 @@ namespace BookingSystem
         public string Name { get; set; } = null!;
         public string Password { get; set; } = null!;
 
+        public virtual ICollection<Booking> Bookings { get; set; }
+
         public Customer(string emailAddress, string name, string password)
         {
             Email = emailAddress;
