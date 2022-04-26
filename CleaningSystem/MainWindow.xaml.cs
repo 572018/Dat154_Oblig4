@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CleaningSystem.Serivces;
 
 namespace CleaningSystem
 {
@@ -20,25 +22,42 @@ namespace CleaningSystem
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Database
+        private dat154_2022_6Context dx = new dat154_2022_6Context();
+        
+        //Liste med services fra database
+        private DbSet<Service> services;
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        //Sender en liste hvor cleaning ikke er tom
         private void Cleaning (object sender, RoutedEventArgs e)
         {
-            new Tasks().Show();
+            var cleaningList = dx.Services.Where(s => s.Cleaning != null).ToList();
+
+            new Tasks(ArrangeData.Cleaning(cleaningList)).Show();
+            Close(); //Lukker gammel side
         }
 
+        //Sender en liste hvor service ikke er tom
         private void Service (object sender, RoutedEventArgs e)
         {
-            new Tasks().Show();
+            var serviceList = dx.Services.Where(s => s.Service1 != null).ToList();
+
+            new Tasks(ArrangeData.Service(serviceList)).Show();
+            Close(); //Lukker gammel side 
         }
 
+        //Sender en liste hvor maintenance ikke er tom
         private void Maintenance (object sender, RoutedEventArgs e)
         {
-            new Tasks().Show();
+            var maintenanceList = dx.Services.Where(s => s.Maintenance != null).ToList();
+
+            new Tasks(ArrangeData.Maintenance(maintenanceList)).Show();
+            Close(); //Lukker gammel side 
         }
 
     }

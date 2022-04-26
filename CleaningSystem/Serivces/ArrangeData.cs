@@ -6,25 +6,35 @@ using System.Threading.Tasks;
 
 namespace CleaningSystem.Serivces
 {
-    internal class ArrangeData
+    public static class ArrangeData
     {
 
-        List<Service> _Services;
-
-        public ArrangeData(List<Service> Services)
+        public static List<Service> Cleaning(List<Service> Services)
         {
-            _Serivces = Services;
-        }
-
-        public List<Service> _Serivces { get; }
-
-        public List<Service> Cleaning()
-        {
-            foreach(var item in _Services)
+            foreach(var item in Services)
             {
                 item.Description = item.Cleaning;
             }
-            return _Serivces;
+            return Services;
+        }
+
+
+        public static List<Service> Service(List<Service> Services)
+        {
+            foreach (var item in Services)
+            {
+                item.Description = item.Service1;
+            }
+            return Services;
+        }
+
+        public static List<Service> Maintenance(List<Service> Services)
+        {
+            foreach (var item in Services)
+            {
+                item.Description = item.Maintenance;
+            }
+            return Services;
         }
     }
 }

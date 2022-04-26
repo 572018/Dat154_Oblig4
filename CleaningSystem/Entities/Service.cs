@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CleaningSystem
 {
@@ -10,7 +11,10 @@ namespace CleaningSystem
         public string? Cleaning { get; set; }
         public string? Service1 { get; set; }
         public string? Maintenance { get; set; }
+        public string? Status { get; set; }
+        public string? Note { get; set; }
 
+        [NotMapped]
         public string? Description { get; set; }
 
         public virtual Room RoomnrNavigation { get; set; } = null!;

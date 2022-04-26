@@ -20,17 +20,24 @@ namespace CleaningSystem
     /// </summary>
     public partial class Tasks : Window
     {
-        private dat154_2022_6Context _context;
-        private DbSet<Service> Service;
 
         public Tasks()
         {
             InitializeComponent();
         }
 
+        public Tasks(List<Service> services) : this ()
+        {
+            foreach (Service service in services)
+            {
+                Service.Items.Add(service);
+            }
+        }
+
         private void SignOut(object sender, RoutedEventArgs e)
         {
             new MainWindow().Show();
+            Close(); //Lukker gammel side 
         }
     }
 }
