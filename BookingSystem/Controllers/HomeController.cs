@@ -46,11 +46,18 @@ namespace BookingSystem.Controllers
         
         }
 
-        public IActionResult BookingPage(Customer model)
+        public IActionResult BookingPage(string password, string email)
         {
+            // sjekk passord, email er legit, kan bruke kunde som model videre
 
+            if (true)
+            {
+                // send med modellen når
+                return View();
 
-            return View();
+            }
+            ViewData["Message"] = "Email or password not correct/found";
+            return View("~/Views/Home/Login.cshtml");
         }
 
 
