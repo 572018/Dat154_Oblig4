@@ -7,11 +7,9 @@ namespace BookingSystem.Repositories
 
     public interface ICustomerRepository
     {
-       public DbSet<Booking> GetAllBookingsForCustomer(string email);
-       public DbSet<Customer> GetAllCustomers();
-
-       public Customer GetCustomer(string email);
-       public void AddCustomer(Customer customer);
+        void AddCustomer(Customer customer);
+        IEnumerable<Booking> GetAllBookingsForCustomer(string email);
+        Customer GetCustomer(string email);
     }
     public class CustomerRepository : ICustomerRepository
     {
@@ -24,15 +22,11 @@ namespace BookingSystem.Repositories
             dx.SaveChanges();
         }
 
-        public DbSet<Booking> GetAllBookingsForCustomer(string email)
+        public IEnumerable<Booking> GetAllBookingsForCustomer(string email)
         {
             throw new NotImplementedException();
         }
 
-        public DbSet<Customer> GetAllCustomers()
-        {
-            return dx.Customers;
-        }
 
         public Customer GetCustomer(string email)
         {

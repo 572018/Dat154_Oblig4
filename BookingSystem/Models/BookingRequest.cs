@@ -3,8 +3,8 @@
     public class BookingRequest
     {
 
-        public DateTime CheckIn { get; set; }
-        public DateTime CheckOut { get; set; }
+        public string ? CheckIn { get; set; }
+        public string ? CheckOut { get; set; }
         public int NumberOfBeds { get; set; }
 
     }

@@ -9,11 +9,14 @@ namespace BookingSystem.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ICustomerService customerService;
+        private readonly IRoomService roomService;
 
-        public HomeController(ILogger<HomeController> logger, ICustomerService customerService)
+
+        public HomeController(ILogger<HomeController> logger, ICustomerService customerService, IRoomService roomService)
         {
             _logger = logger;
             this.customerService = customerService;
+            this.roomService = roomService;
             
         }
 
@@ -59,6 +62,20 @@ namespace BookingSystem.Controllers
             return View();
         }
 
+        public IActionResult ShowAvailableRooms(BookingRequest model)
+        {
+            DateTime startDate = Convert.ToDateTime(model.CheckIn);
+
+            DateTime endDate = Convert.ToDateTime(model.CheckOut);
+
+            var rooms = new AvailableRooms
+            {
+                rooms = roomService.GetAvailableRoomsInDateRangeWithRightOrMoreNumberOfBeds(startDate, endDate, model.NumberOfBeds)
+
+            };
+            return View(rooms);
+        }
+
         public IActionResult UserBookings()
         {
             // Make sure the user is logged in
@@ -67,7 +84,15 @@ namespace BookingSystem.Controllers
                 return RedirectToAction("Login");
             }
             Customer model = customerService.GetCustomerByEmail(HttpContext.Request.Cookies["user_email"]);
+
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult BookRoom(Booking booking)
+        {
+            return RedirectToAction("UserBookings");
+            
         }
 
         public IActionResult Register()
@@ -86,7 +111,6 @@ namespace BookingSystem.Controllers
 
             ViewData["Message"] = "One or more fields wrong, or email already taken.";
             return View();
-
     
         }
 

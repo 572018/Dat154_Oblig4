@@ -16,5 +16,13 @@ namespace BookingSystem.ExtensionMethods
             };
         }
 
+        public static bool IsRoomAvailable(this Booking booking, DateTime startDate, DateTime endDate)
+        {
+
+            return (startDate.CompareTo(booking.Checkindate) > 0 && startDate.CompareTo(booking.Checkoutdate) < 0)
+                      || (endDate.CompareTo(booking.Checkindate) > 0 && endDate.CompareTo(booking.Checkoutdate) < 0)
+                      || (booking.Checkindate.CompareTo(startDate) > 0 && booking.Checkindate.CompareTo(endDate) < 0);
+        }
+
     }
 }
