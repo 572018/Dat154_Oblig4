@@ -10,7 +10,7 @@ namespace BookingSystem.Models
     {
         public Room()
         {
-            Bookings = new HashSet<Booking>();
+            
         }
 
         public Room (int numberOfBeds, RoomSize roomSize)
@@ -18,6 +18,7 @@ namespace BookingSystem.Models
             Beds = numberOfBeds;
             Size = roomSize;
             Price = Extensions.CalculateRoomPrize(this);
+            Bookings = new HashSet<Booking>();
         }
 
         public int Roomnr { get; set; }

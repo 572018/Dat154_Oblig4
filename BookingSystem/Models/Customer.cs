@@ -14,6 +14,8 @@ namespace BookingSystem.Models
 
         public virtual ICollection<Booking> Bookings { get; set; }
 
+        public Customer() { }
+
         public Customer(string emailAddress, string name, string password)
         {
             Email = emailAddress;

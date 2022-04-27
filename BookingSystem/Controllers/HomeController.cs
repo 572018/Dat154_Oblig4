@@ -8,20 +8,22 @@ namespace BookingSystem.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ICustomerService customerService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ICustomerService customerService)
         {
             _logger = logger;
+            this.customerService = customerService;
+            
         }
 
-        public IActionResult Index()
+        public IActionResult LogOut()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            if(HttpContext.Request.Cookies["user_email"] != null)
+            {
+                HttpContext.Response.Cookies.Delete("user_email");
+            }
+            return RedirectToAction("Login");
         }
 
         public IActionResult Login()
@@ -29,36 +31,65 @@ namespace BookingSystem.Controllers
             return View();
         }
 
-  
-        public IActionResult ProcessLogin(string password, string email)
+        [HttpPost]
+        public IActionResult Login(Customer tempmodel)
         {
+            // sjekk passord, email er legit
 
-            Customer model;
-
-           /* if(model == null && ValidatePassword(password, model))
+            Customer model = customerService.GetCustomerByEmail(tempmodel.Email);
+            if (customerService.ValidatePassword(tempmodel.Password, model))
             {
-                return View("BookingPage", model);
+                HttpContext.Response.Cookies.Append("user_email", model.Email);
+                return RedirectToAction("BookingRequest");
+
             }
 
-            ViewData["Message"] = "Email or password not correct/found";*/
+            ViewData["Message"] = "Email or password not correct/found";
+            return View(tempmodel);
+        }
+
+        public IActionResult BookingRequest()
+        {
+            // Make sure the user is logged in
+            if (HttpContext.Request.Cookies["user_email"] == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            return View();
+        }
+
+        public IActionResult UserBookings()
+        {
+            // Make sure the user is logged in
+            if (HttpContext.Request.Cookies["user_email"] == null)
+            {
+                return RedirectToAction("Login");
+            }
+            Customer model = customerService.GetCustomerByEmail(HttpContext.Request.Cookies["user_email"]);
+            return View(model);
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(Customer model)
+        {
+            if (customerService.ValidCustomer(model))
+            {
+                customerService.AddCustomer(model);
+                return RedirectToAction("Login");
+            }
+
+            ViewData["Message"] = "One or more fields wrong, or email already taken.";
             return View();
 
-        
+    
         }
 
-        public IActionResult BookingPage(string password, string email)
-        {
-            // sjekk passord, email er legit, kan bruke kunde som model videre
-
-            if (true)
-            {
-                // send med modellen når
-                return View();
-
-            }
-            ViewData["Message"] = "Email or password not correct/found";
-            return View("~/Views/Home/Login.cshtml");
-        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
