@@ -22,13 +22,16 @@
                         break;
                 }
                 <div class="card-body">
-                    <h5 class="card-title">Room number @room.Roomnr</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Number of beds: @room.Beds</h6>
+                    <h5 class="card-title" >Room number @room.Roomnr </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Number of beds: @room.Beds </h6>
                     <h6 class="card-subtitle mb-2 text-muted">Roomsize: @room.Size</h6>
                     <h6 class="card-subtitle mb-2 text-muted">Price per night: @room.Price</h6>
 
+                    <input type="hidden" name="romNr"  value= @room.Roomnr />
+                   <input type="hidden" name = "booking" value=  @Model.booking/> 
+                   
                     <form method="post" asp-action="BookRoom" asp-controller="home">
-                        <input type="submit" class="btn btn-primary" value="Book this room!"/>
+                        <input type="submit" class="btn btn-primary" value="Book room"/>
                     </form>
 
                 </div>

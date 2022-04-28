@@ -72,7 +72,16 @@ namespace BookingSystem.Controllers
             {
                 rooms = roomService.GetAvailableRoomsInDateRangeWithRightOrMoreNumberOfBeds(startDate, endDate, model.NumberOfBeds)
 
+
             };
+            Booking b =new Booking();
+            b.Checkoutdate = endDate;
+            b.Checkindate = startDate;
+            rooms.booking = b;
+           
+
+
+
             return View(rooms);
         }
 
@@ -89,10 +98,14 @@ namespace BookingSystem.Controllers
         }
 
         [HttpPost]
-        public IActionResult BookRoom(Booking booking)
+        public IActionResult BookRoom(int romNr, Booking b )
 
         {
+            System.Diagnostics.Debug.WriteLine("hei");
+            System.Diagnostics.Debug.WriteLine(romNr);
 
+            System.Diagnostics.Debug.WriteLine(b.Checkindate);
+            
             return RedirectToAction("UserBookings");
             
         }

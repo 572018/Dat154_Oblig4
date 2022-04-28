@@ -7,5 +7,7 @@
         public string ? CheckOut { get; set; }
         public int NumberOfBeds { get; set; }
 
+  
+
     }
 }
