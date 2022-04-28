@@ -90,7 +90,9 @@ namespace BookingSystem.Controllers
 
         [HttpPost]
         public IActionResult BookRoom(Booking booking)
+
         {
+
             return RedirectToAction("UserBookings");
             
         }
