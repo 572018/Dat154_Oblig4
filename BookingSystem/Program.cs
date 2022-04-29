@@ -9,6 +9,8 @@ builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 builder.Services.AddTransient<ICustomerService, CustomerService>();
 builder.Services.AddTransient<IRoomRepository, RoomRepository>();
 builder.Services.AddTransient<IRoomService, RoomService>();
+builder.Services.AddTransient<IBookingRepository, BookingRepository>();
+builder.Services.AddTransient<IBookingService, BookingService>();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();

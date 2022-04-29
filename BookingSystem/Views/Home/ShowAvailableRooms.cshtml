@@ -2,6 +2,7 @@
 
 <div class="container">
     <div class="row justify-content-around">
+
         @foreach (Room room in Model.rooms)
         {
 
@@ -22,16 +23,17 @@
                         break;
                 }
                 <div class="card-body">
-                    <h5 class="card-title" >Room number @room.Roomnr </h5>
+                    <h5 class="card-title">Room number @room.Roomnr </h5>
                     <h6 class="card-subtitle mb-2 text-muted">Number of beds: @room.Beds </h6>
                     <h6 class="card-subtitle mb-2 text-muted">Roomsize: @room.Size</h6>
                     <h6 class="card-subtitle mb-2 text-muted">Price per night: @room.Price</h6>
 
-                    <input type="hidden" name="romNr"  value= @room.Roomnr />
-                   <input type="hidden" name = "booking" value=  @Model.booking/> 
-                   
                     <form method="post" asp-action="BookRoom" asp-controller="home">
-                        <input type="submit" class="btn btn-primary" value="Book room"/>
+                        <input type="hidden" name="roomNr" asp-for=roomNr value="@room.Roomnr" />
+                        <input type="hidden" name="checkIn" asp-for=CheckIn value="@Model.CheckIn" />
+                        <input type="hidden" name="checkOut" asp-for=CheckOut value="@Model.CheckOut" />
+
+                        <input type="submit" class="btn btn-primary" value="Book room" />
                     </form>
 
                 </div>

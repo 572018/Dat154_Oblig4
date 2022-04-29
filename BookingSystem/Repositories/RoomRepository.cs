@@ -16,7 +16,7 @@ namespace BookingSystem.Repositories
         private dat154_2022_6Context dx = new();
         public IEnumerable<Room> GetAllRooms()
         {
-            return dx.Rooms.AsNoTracking().AsEnumerable();
+            return dx.Rooms.Include(r => r.Bookings).AsNoTracking().AsEnumerable();
         }
 
         public Room getRoomByRoomNumber(int number)

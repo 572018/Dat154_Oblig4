@@ -23,8 +23,7 @@ namespace BookingSystem.Services
             var rooms = GetRooms();
 
             var availableRooms = rooms.Where(r => 
-                r.Beds >= NumberOfBeds && (r.Bookings == null || 
-                r.Bookings.All(b => b.IsRoomAvailable(startDate, endDate)))
+                r.Beds >= NumberOfBeds && r.Bookings.All(b => b.IsRoomAvailable(startDate, endDate))
             );
 
             return availableRooms;
@@ -33,7 +32,7 @@ namespace BookingSystem.Services
 
         public IEnumerable<Room> GetRooms()
         {
-            return roomRepository.GetAllRooms().ToList();
+            return roomRepository.GetAllRooms();
         }
     }
 

@@ -11,8 +11,8 @@ namespace BookingSystem.Models
         public DateTime Checkindate { get; set; }
         public DateTime Checkoutdate { get; set; }
 
-        public virtual Room RoomnrNavigation { get; set; } = null!;
-        public virtual Customer EmailNavigation { get; set; } = null!;
+        public virtual Room? RoomnrNavigation { get; set; }
+        public virtual Customer? EmailNavigation { get; set; } 
 
         public Booking() { }
         public Booking(DateTime checkInDate, DateTime checkOutDate, int roomNumber, string emailAddress)

@@ -14,6 +14,7 @@ namespace BookingSystem.Services
         public bool ValidCustomer(Customer customer);
 
         public void AddCustomer(Customer customer);
+
     }
 
     public  class CustomerService : ICustomerService
@@ -51,6 +52,7 @@ namespace BookingSystem.Services
         {
             customerRepository.AddCustomer(customer);
         }
+
 
     }
 }

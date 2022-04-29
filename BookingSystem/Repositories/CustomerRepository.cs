@@ -4,12 +4,11 @@ using BookingSystem.Models;
 
 namespace BookingSystem.Repositories
 {
-
     public interface ICustomerRepository
     {
         void AddCustomer(Customer customer);
-        IEnumerable<Booking> GetAllBookingsForCustomer(string email);
         Customer GetCustomer(string email);
+
     }
     public class CustomerRepository : ICustomerRepository
     {
@@ -22,15 +21,10 @@ namespace BookingSystem.Repositories
             dx.SaveChanges();
         }
 
-        public IEnumerable<Booking> GetAllBookingsForCustomer(string email)
-        {
-            throw new NotImplementedException();
-        }
 
-
-        public Customer GetCustomer(string email)
+        public Customer? GetCustomer(string email)
         {
-            return dx.Customers.Find(email);
+            return dx.Customers.Include(r => r.Bookings).SingleOrDefault(c => c.Email == email);
         }
     }
 }

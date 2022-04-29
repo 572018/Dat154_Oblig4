@@ -10,13 +10,15 @@ namespace BookingSystem.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ICustomerService customerService;
         private readonly IRoomService roomService;
+        private readonly IBookingService bookingService;
 
 
-        public HomeController(ILogger<HomeController> logger, ICustomerService customerService, IRoomService roomService)
+        public HomeController(ILogger<HomeController> logger, ICustomerService customerService, IRoomService roomService, IBookingService bookingService)
         {
             _logger = logger;
             this.customerService = customerService;
             this.roomService = roomService;
+            this.bookingService = bookingService;
             
         }
 
@@ -64,24 +66,24 @@ namespace BookingSystem.Controllers
 
         public IActionResult ShowAvailableRooms(BookingRequest model)
         {
+
+            // Make sure the user is logged in
+            if (HttpContext.Request.Cookies["user_email"] == null)
+            {
+                return RedirectToAction("Login");
+            }
+
             DateTime startDate = Convert.ToDateTime(model.CheckIn);
 
             DateTime endDate = Convert.ToDateTime(model.CheckOut);
 
             var rooms = new AvailableRooms
             {
-                rooms = roomService.GetAvailableRoomsInDateRangeWithRightOrMoreNumberOfBeds(startDate, endDate, model.NumberOfBeds)
-
-
+                rooms = roomService.GetAvailableRoomsInDateRangeWithRightOrMoreNumberOfBeds(startDate, endDate, model.NumberOfBeds),
+                CheckIn = startDate,
+                CheckOut = endDate
             };
-            Booking b =new Booking();
-            b.Checkoutdate = endDate;
-            b.Checkindate = startDate;
-            rooms.booking = b;
            
-
-
-
             return View(rooms);
         }
 
@@ -92,19 +94,32 @@ namespace BookingSystem.Controllers
             {
                 return RedirectToAction("Login");
             }
+
             Customer model = customerService.GetCustomerByEmail(HttpContext.Request.Cookies["user_email"]);
 
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult BookRoom(int romNr, Booking b )
-
+        public IActionResult BookRoom(AvailableRooms model)
         {
-            System.Diagnostics.Debug.WriteLine("hei");
-            System.Diagnostics.Debug.WriteLine(romNr);
+            // Make sure the user is logged in
+            if (HttpContext.Request.Cookies["user_email"] == null)
+            {
+                return RedirectToAction("Login");
+            }
 
-            System.Diagnostics.Debug.WriteLine(b.Checkindate);
+            Booking booking = new Booking
+            {
+                Roomnr = model.roomNr,
+                Checkindate = model.CheckIn,
+                Checkoutdate = model.CheckOut,
+                Email = HttpContext.Request.Cookies["user_email"]!,
+                Id = DateTime.Now.Millisecond
+            };
+
+            bookingService.AddBooking(booking);
+            
             
             return RedirectToAction("UserBookings");
             

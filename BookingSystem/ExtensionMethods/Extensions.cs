@@ -19,10 +19,17 @@ namespace BookingSystem.ExtensionMethods
         public static bool IsRoomAvailable(this Booking booking, DateTime startDate, DateTime endDate)
         {
 
-            return (startDate.CompareTo(booking.Checkindate) > 0 && startDate.CompareTo(booking.Checkoutdate) < 0)
-                      || (endDate.CompareTo(booking.Checkindate) > 0 && endDate.CompareTo(booking.Checkoutdate) < 0)
-                      || (booking.Checkindate.CompareTo(startDate) > 0 && booking.Checkindate.CompareTo(endDate) < 0);
+            return !((startDate.CompareTo(booking.Checkindate) >= 0 && startDate.CompareTo(booking.Checkoutdate) < 0)
+                      || (endDate.CompareTo(booking.Checkindate) > 0 && endDate.CompareTo(booking.Checkoutdate) <= 0)
+                      || (booking.Checkindate.CompareTo(startDate) >= 0 && booking.Checkindate.CompareTo(endDate) < 0));
         }
-
     }
+    /* 
+        Value	            Description
+        Less than zero	    This instance is earlier than value.
+        Zero	            This instance is the same as value.
+        Greater than zero	This instance is later than value. 
+
+     */
+
 }
