@@ -22,13 +22,14 @@ namespace CleaningSystem
         private dat154_2022_6Context dx = new dat154_2022_6Context();
 
         public Service service;
+        string _service;
 
         public Edit()
         {
             InitializeComponent();
         }
 
-        public Edit(Service Service)
+        public Edit(Service Service, string serviceString)
         {
             InitializeComponent();
 
@@ -43,6 +44,8 @@ namespace CleaningSystem
             {
                 Status.Text = service.Status;
             }
+
+            _service = serviceString;
         }
         //<TextBox Name="Status" HorizontalAlignment="Left" Margin="181,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154" Height="26" RenderTransformOrigin="0.472,0.471" Grid.ColumnSpan="2" Grid.Column="1"/>
         
@@ -62,11 +65,32 @@ namespace CleaningSystem
 
             if ((string?)Status.SelectedItem == "Done")
             {
-                dx.Services.Remove(service);
-                dx.SaveChanges();
+                
+                var b = dx.Services.Select(x => x).Where(x => x.Maintenance != null || x.Service1 != null || x.Cleaning != null);
+               
+
+                if (b!=null)
+                {
+                    dx.Services.Remove(service);
+                    dx.SaveChanges();
+                }
+                
             }
             else
             {
+             if (_service == "Cleaning")
+                {
+                    service.Cleaning = null;
+                }   
+              if (_service =="Service")
+                {
+                    service.Service1 = null;
+                } 
+              if (_service == "Maintenance")
+                {
+                    service.Maintenance = null;
+                }
+
                 dx.Services.Update(service);
                 dx.SaveChanges();
             }

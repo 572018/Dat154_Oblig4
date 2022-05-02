@@ -38,7 +38,7 @@ namespace CleaningSystem
         {
             var cleaningList = dx.Services.Where(s => s.Cleaning != null).ToList();
 
-            new Tasks(ArrangeData.Cleaning(cleaningList)).Show();
+            new Tasks(ArrangeData.Cleaning(cleaningList), "Cleaning").Show();
             Close(); //Lukker gammel side
         }
 
@@ -47,7 +47,7 @@ namespace CleaningSystem
         {
             var serviceList = dx.Services.Where(s => s.Service1 != null).ToList();
 
-            new Tasks(ArrangeData.Service(serviceList)).Show();
+            new Tasks(ArrangeData.Service(serviceList), "Service").Show();
             Close(); //Lukker gammel side 
         }
 
@@ -56,7 +56,7 @@ namespace CleaningSystem
         {
             var maintenanceList = dx.Services.Where(s => s.Maintenance != null).ToList();
 
-            new Tasks(ArrangeData.Maintenance(maintenanceList)).Show();
+            new Tasks(ArrangeData.Maintenance(maintenanceList), "Maintenance").Show();
             Close(); //Lukker gammel side 
         }
 
