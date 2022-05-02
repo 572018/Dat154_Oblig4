@@ -21,13 +21,14 @@ namespace CleaningSystem
     public partial class Tasks : Window
     {
         private List<Service> serviceList;
+        private string _service;
 
         public Tasks()
         {
             InitializeComponent();
         }
 
-        public Tasks(List<Service> services) : this()
+        public Tasks(List<Service> services, string serviceName) : this()
         {
             foreach (Service service in services)
             {
@@ -35,6 +36,7 @@ namespace CleaningSystem
             }
 
             serviceList = services;
+            _service = serviceName;
         }
 
         private void SignOut(object sender, RoutedEventArgs e)
@@ -47,13 +49,13 @@ namespace CleaningSystem
         {
             Service service = ((ListViewItem)sender).Content as Service;
 
-            new Edit(service).Show();
+            new Edit(service, _service).Show();
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new Tasks(serviceList).Show();
+            new Tasks(serviceList, _service).Show();
             Close();
         }
     }
